@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Portfolio</title>
+
+    <!-- ICONS + FONT + GSAP -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: black;
+            color: white;
+            overflow-x: hidden;
+        }
+        /* ANIMATED BACKGROUND */
+        
+        #particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #001219, #000);
+            z-index: -1;
+            animation: bgMove 8s infinite alternate;
+        }
+        
+        @keyframes bgMove {
+            from {
+                filter: hue-rotate(0deg);
+            }
+            to {
+                filter: hue-rotate(60deg);
+            }
+        }
+        /* HEADER */
+        
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 7%;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(0, 200, 255, 0.2);
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #00eaff;
+            text-shadow: 0 0 20px #00eaff;
+            cursor: pointer;
+        }
+        
+        nav a {
+            margin-left: 30px;
+            font-size: 1.6rem;
+            color: white;
+            transition: .2s;
+        }
+        
+        nav a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 20px #00eaff;
+        }
+        /* SECTIONS */
+        
+        section {
+            padding: 120px 8%;
+            min-height: 100vh;
+        }
+        /* HOME */
+        
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+        
+        .home img {
+            width: 330px;
+            border-radius: 50%;
+            border: 4px solid #00eaff;
+            box-shadow: 0 0 40px #00aaff;
+            animation: floating 4s infinite ease-in-out;
+        }
+        
+        @keyframes floating {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+        
+        h1 {
+            font-size: 5rem;
+            font-weight: 700;
+        }
+        
+        span {
+            color: #00eaff;
+        }
+        
+        .typing {
+            font-size: 2.5rem;
+            margin: 8px 0;
+        }
+        
+        .typing span {
+            border-right: 3px solid #00eaff;
+            animation: blink .7s infinite;
+        }
+        
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        
+        p {
+            font-size: 1.6rem;
+            max-width: 460px;
+            margin-top: 10px;
+        }
+        /* Social Icons */
+        
+        .social a {
+            margin-right: 15px;
+            font-size: 2rem;
+            padding: 10px;
+            border-radius: 50%;
+            border: 2px solid #00eaff;
+            color: #00eaff;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .social a:hover {
+            background: #00eaff;
+            color: black;
+            box-shadow: 0 0 25px #00eaff;
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 35px;
+            font-size: 1.7rem;
+            border-radius: 40px;
+            border: 3px solid #00eaff;
+            background: transparent;
+            color: #00eaff;
+            transition: .3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #00eaff;
+            color: black;
+            box-shadow: 0 0 25px #00eaff;
+        }
+        /* TITLE */
+        
+        .title {
+            text-align: center;
+            font-size: 3.2rem;
+            margin-bottom: 40px;
+            color: #00eaff;
+        }
+        /* CARDS */
+        
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+        
+        .card {
+            width: 270px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid #00eaff;
+            border-radius: 18px;
+            transition: .3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 25px #00eaff;
+        }
+        
+        .card i {
+            font-size: 3.5rem;
+            color: #00eaff;
+            margin-bottom: 10px;
+        }
+        /* CONTACT FORM */
+        
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.6rem;
+            border-radius: 10px;
+            border: 2px solid #00eaff;
+            background: black;
+            color: white;
+        }
+        
+        form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            font-size: 1.3rem;
+            padding: 20px;
+            color: #00eaff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles"></div>
+
+    <header>
+        <div class="logo">CYBER</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <img src="JJJJ.JPG">
+
+        <div>
+            <h1>Hello, I'm <span>CYBER</span></h1>
+            <div class="typing">I'm a <span id="role"></span></div>
+            <p>I build digital experiences, cyber-sec tools and automation solutions.</p>
+
+            <div class="social">
+                <a><i class="fa-brands fa-github"></i></a>
+                <a><i class="fa-brands fa-linkedin"></i></a>
+                <a><i class="fa-brands fa-instagram"></i></a>
+            </div>
+
+            <a href="#contact" class="btn">Work With Me</a>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2 class="title">🚀 Skills</h2>
+        <div class="cards">
+            <div class="card"><i class="fa-solid fa-code"></i>
+                <h3>Web Dev</h3>
+            </div>
+            <div class="card"><i class="fa-solid fa-shield-halved"></i>
+                <h3>Cyber Security</h3>
+            </div>
+            <div class="card"><i class="fa-solid fa-brain"></i>
+                <h3>Automation</h3>
+            </div>
+            <div class="card"><i class="fa-solid fa-robot"></i>
+                <h3>AI Tools</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2 class="title">📁 Projects</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>🔹 Portfolio Website</h3>
+                <p>Fully animated responsive website.</p>
+            </div>
+            <div class="card">
+                <h3>🔹 Cyber ToolKit</h3>
+                <p>Recon + scanning + automation.</p>
+            </div>
+            <div class="card">
+                <h3>🔹 Python Auto Bot</h3>
+                <p>System automation scripts & AI tasks.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="title">📩 Contact Me</h2>
+        <form onsubmit="sendMail(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea rows="5" placeholder="Message"></textarea>
+            <button class="btn">Send</button>
+        </form>
+    </section>
+
+    <footer>⚡ Built by CYBER • 2025</footer>
+
+    <script>
+        // Typing Effect
+        const roles = ["Ethical Hacker", "Web Developer", "Automation Engineer", "Tech Creator"];
+        let i = 0,
+            j = 0;
+        const text = document.getElementById("role");
+
+        function type() {
+            if (j < roles[i].length) {
+                text.innerHTML += roles[i][j++];
+                setTimeout(type, 90);
+            } else setTimeout(erase, 1000);
+        }
+
+        function erase() {
+            if (j > 0) {
+                text.innerHTML = roles[i].substring(0, --j);
+                setTimeout(erase, 50);
+            } else {
+                i = (i + 1) % roles.length;
+                type();
+            }
+        }
+        type();
+
+        // GSAP animations
+        gsap.from(".home img", {
+            opacity: 0,
+            y: 50,
+            duration: 1.2
+        });
+        gsap.from(".home div", {
+            opacity: 0,
+            x: 70,
+            duration: 1.2,
+            delay: .2
+        });
+        gsap.utils.toArray(".card").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: card,
+                opacity: 0,
+                y: 80,
+                duration: .9,
+                delay: i * .15
+            });
+        });
+
+        // Dummy Send
+        function sendMail(e) {
+            e.preventDefault();
+            alert("📨 Message Sent Successfully!");
+        }
+    </script>
+
+</body>
+
+</html>
